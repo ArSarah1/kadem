@@ -19,6 +19,7 @@ public class Equipe {
     private String nomEquipe;
     @Enumerated(EnumType.STRING)
     private  Niveau niveau ;
+
     @OneToOne
     private DetailEquipe detailEquipe;
     @ManyToMany

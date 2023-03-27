@@ -11,4 +11,6 @@ public interface IDepartmentServices {
     void DeleteDepart(Integer idDepart);
     List<Department> GetAll();
     Department GetById(Integer idDepart);
+    public void assignUniversiteToDepartement(Integer idUniv, Integer idDepart);
+     List<Department> retrieveDepartementsByUniversite(Integer idUniv);
 }

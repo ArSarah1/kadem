@@ -1,5 +1,6 @@
 package tn.aymax.technicalsap.kadem.services;
 
+        import lombok.RequiredArgsConstructor;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Service;
         import tn.aymax.technicalsap.kadem.entities.DetailEquipe;
@@ -8,10 +9,10 @@ package tn.aymax.technicalsap.kadem.services;
         import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class IDetailEquServicesImpl implements IDetailEquService{
 
-    @Autowired
-    private DetailEquRepository detailEquRepository;
+    private final DetailEquRepository detailEquRepository;
 
     @Override
     public void AddDetail(DetailEquipe de) {

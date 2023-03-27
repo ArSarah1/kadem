@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +21,8 @@ public class Contrat {
     private  Specialite specialite ;
     private Boolean archive ;
     private int montantContart ;
+    private String NomContart;
+    private int idUniv ;
     @ManyToOne
     private Etudiant etudiant;
 }

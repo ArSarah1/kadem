@@ -1,5 +1,6 @@
 package tn.aymax.technicalsap.kadem.services;
 
+import tn.aymax.technicalsap.kadem.entities.Department;
 import tn.aymax.technicalsap.kadem.entities.Etudiant;
 import tn.aymax.technicalsap.kadem.entities.University;
 
@@ -13,5 +14,6 @@ public interface IUniversityServices {
     List<University> GetAll();
 
     void assignUnivToDepartment(Integer idUniv , Integer IdDepart);
+    List<Department> retrieveDepartmentsByUniversity(Integer idUniv);
 }
 

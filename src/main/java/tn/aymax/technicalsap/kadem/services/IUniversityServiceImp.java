@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import tn.aymax.technicalsap.kadem.entities.Department;
+import tn.aymax.technicalsap.kadem.entities.Etudiant;
 import tn.aymax.technicalsap.kadem.entities.University;
 import tn.aymax.technicalsap.kadem.repositories.DepartementRepository;
 import tn.aymax.technicalsap.kadem.repositories.UniversityRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -47,6 +49,7 @@ public class IUniversityServiceImp implements IUniversityServices {
     }
 
     @Override
+    @Transactional
     public void assignUnivToDepartment(Integer idUniv, Integer idDepart) {
         // récuperation des objets
         // Etudiant etudiant = this.getById(idEtudiant);
@@ -57,8 +60,21 @@ public class IUniversityServiceImp implements IUniversityServices {
         Assert.notNull(university,"University not Null");
         Assert.notNull(department,"Department Not Null");
 
+
+        // methode 1
         university.getDepartments().add(department);
-            universityRepository.save(university);
+        //methode 2
+       // List<Department> departments = university.getDepartments();
+        //departments.add(department);
+        //University.setDepartments(departments);
+        universityRepository.save(university);
         }
+
+    @Override
+    public List<Department> retrieveDepartmentsByUniversity(Integer idUniv) {
+        Department department;
+        universityRepository.deleteById(idUniv);
+        return departementRepository.save(department);
     }
+}
 

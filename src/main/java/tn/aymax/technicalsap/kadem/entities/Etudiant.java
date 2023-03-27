@@ -19,6 +19,7 @@ public class Etudiant {
     private int idEtudiant;
     private String prenomE;
     private String nomE;
+    private Integer idDepart;
     @Enumerated(EnumType.STRING)
     private Option option ;
     @ManyToOne
@@ -27,5 +28,6 @@ public class Etudiant {
     private List<Contrat> contrats ;
     @ManyToMany (mappedBy = "etudiants")
     private List<Equipe> equipes;
+
 
 }

@@ -17,7 +17,11 @@ public class Department {
     @Setter(AccessLevel.NONE)
     private int idDepart;
     private String nomDepart;
+    private Integer idUniv;
     @OneToMany(mappedBy = "department")
     private List<Etudiant> etudiants ;
+
+    @ManyToOne()
+    private University university;
 
 }

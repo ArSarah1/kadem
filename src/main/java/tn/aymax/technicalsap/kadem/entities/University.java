@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,7 +18,7 @@ public class University {
     @Setter( AccessLevel.NONE)
     private int idUniv ;
     private String nomUniv;
-    @OneToMany
+    @OneToMany(mappedBy = "university")
     List<Department> departments;
 
 

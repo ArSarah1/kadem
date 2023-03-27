@@ -2,6 +2,7 @@ package tn.aymax.technicalsap.kadem.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import tn.aymax.technicalsap.kadem.entities.Equipe;
+import tn.aymax.technicalsap.kadem.entities.Etudiant;
 import tn.aymax.technicalsap.kadem.repositories.EquipeRepository;
 
 
@@ -13,4 +14,5 @@ public interface IEquipeServices {
     void deleteEquipe(Integer idEquipe);
     Equipe getById(Integer idEquipe);
     List<Equipe> getAll();
+
 }

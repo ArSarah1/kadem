@@ -13,13 +13,14 @@ import tn.aymax.technicalsap.kadem.repositories.DepartementRepository;
 import tn.aymax.technicalsap.kadem.repositories.EquipeRepository;
 import tn.aymax.technicalsap.kadem.repositories.EtudiantRepository;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class IEtudiantServiceImp implements IEtudiantServices {
-
 
     private final EtudiantRepository etudiantRepiository;
     private final DepartementRepository departementRepository;
@@ -66,21 +67,34 @@ public class IEtudiantServiceImp implements IEtudiantServices {
     }
 
     @Override
+    @Transactional
     public Etudiant addAssignEtudiantToEquipeAndContrat(Etudiant e, Integer idContart, Integer idEquipe) {
         Contrat contrat = contratRepository.findById(idContart).orElse(null);
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
 
-        Assert.notNull(contrat , "Contrat Not Null");
-        Assert.notNull(equipe, "Equipe Not Null");
+        Assert.notNull(contrat , "Contrat is Null");
+        Assert.notNull(equipe, "Equipe is Null");
+        Assert.notNull(e, "Equipe is Null");
 
-        e.getEquipes().add(equipe);
-        // on a une lsite vide => on utilise SetEtudiant non pas GETEtudiant
+        etudiantRepiository.saveAndFlush(e);
+        List<Equipe> equipes = new ArrayList<>();
+        equipes.add(equipe);
+        e.setEquipes(equipes);
         contrat.setEtudiant(e);
+        return e;
 
+    }
+    private List<Etudiant> etudiants = new ArrayList<>();
+    @Override
+    public List<Etudiant> getEtudiantsByDepartement(Integer idDepart) {
+        List<Etudiant> etudiantsByDepartement = new ArrayList<>();
 
-        contratRepository.save(contrat);
-        return etudiantRepiository.save(e);
-
+        for (Etudiant etudiant : etudiants) {
+            if (etudiant.getIdDepart().equals(idDepart)) {
+                etudiantsByDepartement.add(etudiant);
+            }
+        }
+        return etudiantsByDepartement;
     }
 
     @Override
@@ -89,5 +103,6 @@ public class IEtudiantServiceImp implements IEtudiantServices {
          return etudiantRepiository.findById(idEtudiant).get();
 
     }
+
 
 }

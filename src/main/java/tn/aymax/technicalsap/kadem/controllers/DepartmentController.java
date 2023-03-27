@@ -1,6 +1,7 @@
 package tn.aymax.technicalsap.kadem.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.aymax.technicalsap.kadem.entities.Department;
 import tn.aymax.technicalsap.kadem.entities.Etudiant;
@@ -38,5 +39,10 @@ public class DepartmentController {
         return iDepartmentServices.GetById(idDeaprt);
     }
 
+    @GetMapping("/universite/{idUniv}")
+    public ResponseEntity<List<Department>> retrieveDepartementsByUniversite(@PathVariable("idUniv") Integer idUniv) {
+        List<Department> departements = iDepartmentServices.retrieveDepartementsByUniversite(idUniv);
+        return ResponseEntity.ok(departements);
+    }
 
 }

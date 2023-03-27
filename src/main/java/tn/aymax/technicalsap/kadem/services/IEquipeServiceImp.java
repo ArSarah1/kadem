@@ -1,5 +1,6 @@
 package tn.aymax.technicalsap.kadem.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.aymax.technicalsap.kadem.entities.Equipe;
@@ -8,10 +9,10 @@ import tn.aymax.technicalsap.kadem.repositories.EquipeRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class IEquipeServiceImp  implements  IEquipeServices {
 
-    @Autowired
-    private EquipeRepository equipeRepository;
+    private final EquipeRepository equipeRepository;
 
     @Override
     public void addEquipe(Equipe e) {
